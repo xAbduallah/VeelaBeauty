@@ -1,8 +1,14 @@
-import type { Metadata } from "next";
 import "./globals.css";
+import localFont from "next/font/local";
+import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
-import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
+
+const myFont = localFont({
+  src: "../public/fonts/MyriadPro.otf",
+  variable: "--font-main",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Veela Beauty - Premium Cosmetics & Beauty Products",
@@ -16,12 +22,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" className={myFont.variable} suppressHydrationWarning>
+      <body className="flex flex-col min-h-screen">
         <Header />
-        {/* <Navigation /> */}
-        {/* <main className="min-h-screen">{children}</main> */}
-        {/* <Footer /> */}
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
