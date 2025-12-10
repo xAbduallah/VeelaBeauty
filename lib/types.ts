@@ -71,20 +71,6 @@ export interface Banner {
   textColor?: string;
 }
 
-// Review Types
-export interface Review {
-  id: string;
-  productId: string;
-  userName: string;
-  userAvatar?: string;
-  rating: number;
-  date: string;
-  title?: string;
-  comment: string;
-  helpful?: number;
-  verified?: boolean;
-}
-
 // Filter Types
 export interface FilterOption {
   id: string;

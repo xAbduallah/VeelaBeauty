@@ -38,31 +38,34 @@ export default function NavBar() {
 
   return (
     <nav className="w-full relative" ref={dropdownRef}>
-      {/* Custom Carousel for sm and md */}
-      <div className="block lg:hidden relative">
-        {/* Scrollable Container */}
-        <div className="overflow-x-auto scrollbar-hide scroll-smooth ltr:mr-4 rtl:ml-4" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
-          <div className="flex items-center justify-between gap-6 py-3">
-            {translatedItems.map((item) => (
-              <button
-                key={item.href}
-                onClick={() => {
-                  if (item.label === selectedItems) {
-                    setItem("");
-                    push(item.href);
-                  } else setItem(item.label);
-                }}
-                className={`text-lg sm:text-xl font-medium ${activeStyle(item)} transition-colors whitespace-nowrap relative group`}
-              >
-                {item.label}
-                <span className="absolute -bottom-3 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300" />
-              </button>
-            ))}
-          </div>
+      {/* sm and md layout */}
+      <div
+        className="block lg:hidden relative overflow-x-auto scrollbar-hide scroll-smooth ltr:mr-4 rtl:ml-4"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
+        <div className="flex items-center justify-between gap-6 py-3">
+          {translatedItems.map((item) => (
+            <button
+              key={item.href}
+              onClick={() => {
+                if (!item.sections || item.label === selectedItems) {
+                  setItem("");
+                  push(item.href);
+                } else setItem(item.label);
+              }}
+              className={`text-lg sm:text-xl font-bold ${activeStyle(item)} transition-colors whitespace-nowrap relative group`}
+            >
+              {item.label}
+              <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300" />
+              <Activity mode={item.label == selectedItems ? "visible" : "hidden"}>
+                <span className="z-10 absolute -bottom-2 rounded-full left-0 w-full h-0.5 bg-primary-500 transition-all duration-300" />
+              </Activity>
+            </button>
+          ))}
         </div>
       </div>
 
-      {/* Flex layout for lg and above */}
+      {/* lg layout */}
       <div className="hidden lg:flex justify-center gap-10 p-3">
         {translatedItems.map((item) => (
           <Link
@@ -70,7 +73,7 @@ export default function NavBar() {
             key={item.href}
             onClick={() => setItem("")}
             onMouseEnter={() => setItem(item.label)}
-            className={`text-2xl font-medium ${activeStyle(item)} transition-colors whitespace-nowrap relative group`}
+            className={`text-2xl font font-bold ${activeStyle(item)} transition-colors whitespace-nowrap relative group`}
           >
             {item.label}
             <span className="absolute -bottom-3 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300" />

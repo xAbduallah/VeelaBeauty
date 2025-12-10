@@ -3,71 +3,14 @@
 import React, { useState, Suspense } from "react";
 import Image from "next/image";
 import { useParams, useSearchParams } from "next/navigation";
-import { CategoryFilter, ProductsSection, FilterSectionData, PriceRangeValue } from "@/components/category";
+import { CategoryFilter, FilterSectionData, PriceRangeValue, ProductsSection } from "@/components/category";
 import { Product } from "@/lib/types";
-import productImg from "@/public/images/product.svg";
+import productImg from "@/public/images/Makeup.svg";
+import productImgMd from "@/public/images/Makeup-md.svg";
+import productImgSm from "@/public/images/Makeup-sm.svg";
 import { ChevronRight } from "lucide-react";
-
-// Sample filter data - replace with actual data from API
-const defaultFilterSections: FilterSectionData[] = [
-  {
-    id: "category",
-    title: "Category",
-    items: [
-      { id: "skincare", label: "Skincare", count: 45 },
-      { id: "makeup", label: "Makeup", count: 32 },
-      { id: "haircare", label: "Haircare", count: 28 },
-      { id: "bodycare", label: "Body Care", count: 19 },
-      { id: "fragrance", label: "Fragrance", count: 15 },
-    ],
-  },
-  {
-    id: "skintype",
-    title: "Skintype (for skin)",
-    items: [
-      { id: "normal", label: "Normal", count: 38 },
-      { id: "dry", label: "Dry", count: 25 },
-      { id: "oily", label: "Oily", count: 31 },
-      { id: "combination", label: "Combination", count: 22 },
-      { id: "sensitive", label: "Sensitive", count: 18 },
-    ],
-  },
-  {
-    id: "applicableArea",
-    title: "Applicable area",
-    items: [
-      { id: "face", label: "Face", count: 52 },
-      { id: "eyes", label: "Eyes", count: 24 },
-      { id: "lips", label: "Lips", count: 18 },
-      { id: "body", label: "Body", count: 35 },
-      { id: "hands", label: "Hands", count: 12 },
-    ],
-  },
-  {
-    id: "effectiveMaterial",
-    title: "Effective material",
-    items: [
-      { id: "hyaluronic", label: "Hyaluronic Acid", count: 28 },
-      { id: "retinol", label: "Retinol", count: 15 },
-      { id: "vitaminc", label: "Vitamin C", count: 22 },
-      { id: "niacinamide", label: "Niacinamide", count: 19 },
-      { id: "peptides", label: "Peptides", count: 11 },
-      { id: "ceramides", label: "Ceramides", count: 14 },
-    ],
-  },
-  {
-    id: "concerns",
-    title: "Concerns",
-    items: [
-      { id: "aging", label: "Anti-Aging", count: 34 },
-      { id: "acne", label: "Acne", count: 21 },
-      { id: "hydration", label: "Hydration", count: 42 },
-      { id: "brightening", label: "Brightening", count: 27 },
-      { id: "pores", label: "Pores", count: 16 },
-      { id: "darkspots", label: "Dark Spots", count: 13 },
-    ],
-  },
-];
+import Button from "@/components/ui/Button";
+import { defaultFilterSections } from "@/lib/constants";
 
 // Sample products - replace with actual data from API
 const sampleProducts: Product[] = [
@@ -203,9 +146,10 @@ const sampleProducts: Product[] = [
 const CategoriesContent: React.FC = () => {
   const search = useSearchParams();
   const { id } = useParams<{ id: string }>();
-
   const type = search.get("type");
   const subcategory = search.get("subcategory");
+
+  const navValues = [id, type, subcategory].filter((v) => v && v.trim() !== "").map((v) => v?.replace(/-/g, " "));
 
   const [priceRange, setPriceRange] = useState<PriceRangeValue>({
     min: 0,
@@ -220,17 +164,17 @@ const CategoriesContent: React.FC = () => {
   };
 
   const handleFilterChange = (sectionId: string, itemId: string, checked: boolean) => {
-    setFilterSections((prev) =>
-      prev.map((section) => {
-        if (section.id === sectionId) {
-          return {
-            ...section,
-            items: section.items.map((item) => (item.id === itemId ? { ...item, checked } : item)),
-          };
-        }
-        return section;
-      })
-    );
+    // setFilterSections((prev) =>
+    //   prev.map((section) => {
+    //     if (section.id === sectionId) {
+    //       return {
+    //         ...section,
+    //         items: section.items.map((item) => (item.id === itemId ? { ...item, checked } : item)),
+    //       };
+    //     }
+    //     return section;
+    //   })
+    // );
   };
 
   const [sortedProducts, setSortedProducts] = useState(sampleProducts);
@@ -279,24 +223,27 @@ const CategoriesContent: React.FC = () => {
   ];
 
   return (
-    <section className="main-section">
-      <div className="flex flex-col items-center gap-8 w-full">
+    <section className="w-full bg-[radial-gradient(circle_at_top_left,#ec4899_0%,rgba(236,72,153,0.35)_0%,transparent_20%)] shadow-[inset_0_40px_20px_-10px_rgba(0,0,0,0.18)]">
+      <div className="main-section flex flex-col items-center">
         {/* Breadcrumb Navigation */}
-        <div className="flex items-end gap-2 self-start">
-          <span className="text-[18px] leading-[21.6px] font-normal text-[#4A4A4A]">Home</span>
-          <ChevronRight />
-          <span className="text-[18px] leading-[21.6px] font-normal text-[#4A4A4A]">Makeup</span>
-          <ChevronRight />
-          <span className="text-[18px] leading-[21.6px] font-normal text-[#4A4A4A]">Face</span>
+        <div className="flex items-end gap-1 self-start">
+          <span className="text-heading mb-0 capitalize text-black">Category</span>
+
+          {navValues.map((value, index) => (
+            <div key={index} className="flex items-center gap-1">
+              <ChevronRight className="text-primary-400 w-5 h-5" />
+              <span className="nav-text font-normal capitalize">{value}</span>
+            </div>
+          ))}
         </div>
 
         {/* Category Description Section */}
-        <div className="flex items-start justify-start gap-[118px] w-full">
+        <div className="flex flex-col md:flex-row gap-6 items-center justify-between w-full">
           {/* Description Content */}
-          <div className="flex flex-col gap-6 w-[518px]">
+          <div className="flex flex-col gap-6 md:w-[328px] lg:w-[518px]">
             <div className="flex flex-col items-center w-full">
-              <h1 className="text-[52px] leading-[62.4px] font-normal text-black w-full">Makeup</h1>
-              <p className="text-[14px] leading-[16.8px] font-normal text-black uppercase w-full h-[68px] line-clamp-4">
+              <h1 className="text-[52px] font-normal text-black w-full">Makeup</h1>
+              <p className="text-[14px] font-normal text-black uppercase w-full h-[68px] line-clamp-3">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. esse
                 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
                 id est laborum.
@@ -304,35 +251,42 @@ const CategoriesContent: React.FC = () => {
             </div>
 
             {/* Tags */}
-            <div className="flex flex-wrap gap-4 w-full">
+            <div className="flex flex-wrap gap-2 w-full">
               {categoryTags.map((tag) => (
-                <button
+                <Button
                   key={tag}
-                  className="flex items-center justify-center px-[14px] py-[6px] bg-white hover:bg-gray-50 shadow-sm rounded-[5px] text-[20px] leading-[24px] font-normal text-[#333333] uppercase transition-all"
+                  variant="outline"
+                  size="sm"
+                  fullWidth={false}
+                  className="flex items-center justify-center px-[14px] shadow-md uppercase transition-all border-none"
                 >
                   {tag}
-                </button>
+                </Button>
               ))}
             </div>
           </div>
 
           {/* Background Image */}
-          <div className="relative w-[612px] h-[300px] rounded-[15px] overflow-hidden">
-            <Image src={productImg} alt="Category background" fill className="object-cover" />
+          <div className="relative w-[434px] h-[200px] md:w-[328px] md:h-[271px] lg:w-[612px] lg:h-[300px] rounded-[15px] overflow-hidden">
+            <Image src={productImgSm} alt="Category background" fill className="object-contain md:hidden" />
+            <Image src={productImgMd} alt="Category background" fill className="object-contain hidden md:block lg:hidden" />
+            <Image src={productImg} alt="Category background" fill className="object-contain hidden lg:block" />
           </div>
         </div>
 
         {/* Main Content Area */}
-        <div className="flex items-start gap-[100px] w-full">
-          <CategoryFilter
-            categoryTitle={categoryTitle}
-            subcategoryTitle={subcategory || undefined}
-            typeTitle={type || undefined}
-            filterSections={filterSections}
-            priceRange={priceRange}
-            onPriceChange={handlePriceChange}
-            onFilterChange={handleFilterChange}
-          />
+        <div className="hidden md:flex items-start md:gap-[27px] lg:gap-[100px] w-full mt-8">
+          <div className="hidden md:block">
+            <CategoryFilter
+              categoryTitle={categoryTitle}
+              subcategoryTitle={subcategory || undefined}
+              typeTitle={type || undefined}
+              filterSections={filterSections}
+              priceRange={priceRange}
+              onPriceChange={handlePriceChange}
+              onFilterChange={handleFilterChange}
+            />
+          </div>
 
           <ProductsSection
             title={categoryTitle}

@@ -40,11 +40,21 @@
   }
 
   .nav-text {
-    @apply text-secondary-700 text-[14px] md:text-[16px] lg:text-[18px] hover:text-primary-500 hover:underline w-fit transition-colors mb-1;
+    @apply text-secondary-700 text-[14px] md:text-[16px] lg:text-[18px] hover:text-primary-500 hover:underline w-fit transition-colors cursor-pointer;
   }
 
   .text-heading {
     @apply text-[#94A3B8] text-[16px] md:text-[18px] lg:text-[20px] tracking-[0.05555em] font-semibold uppercase mb-2;
+  }
+
+  .no-spinner::-webkit-inner-spin-button,
+  .no-spinner::-webkit-outer-spin-button {
+    @apply appearance-none;
+    margin: 0;
+  }
+
+  .no-spinner {
+    -moz-appearance: textfield;
   }
 }
 

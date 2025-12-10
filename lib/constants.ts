@@ -1,4 +1,4 @@
-import type { Review, NavigationItem, Banner } from "./types";
+import type { NavigationItem, Banner, FilterSectionData } from "./types";
 import banner1 from "@/public/images/home/banner-1.jpg";
 import banner2 from "@/public/images/home/banner-2.jpg";
 import banner3 from "@/public/images/home/banner-3.jpg";
@@ -10,8 +10,7 @@ export const heroBanners: Banner[] = [
     id: "1",
     title: "Summer Glow Collection",
     subtitle: "New Arrival",
-    description:
-      "Discover our latest sun-kissed makeup collection for the perfect summer look",
+    description: "Discover our latest sun-kissed makeup collection for the perfect summer look",
     image: banner1,
     buttonText: "Shop Now",
     buttonLink: "/category/new-arrivals",
@@ -21,8 +20,7 @@ export const heroBanners: Banner[] = [
     id: "2",
     title: "Luxury Skincare Sale",
     subtitle: "Up to 40% Off",
-    description:
-      "Premium skincare products at unbeatable prices. Limited time offer!",
+    description: "Premium skincare products at unbeatable prices. Limited time offer!",
     image: banner2,
     buttonText: "Shop Sale",
     buttonLink: "/category/offers",
@@ -32,8 +30,7 @@ export const heroBanners: Banner[] = [
     id: "3",
     title: "Signature Fragrances",
     subtitle: "Exclusive Collection",
-    description:
-      "Find your perfect scent from our curated selection of designer perfumes",
+    description: "Find your perfect scent from our curated selection of designer perfumes",
     image: banner3,
     buttonText: "Explore Now",
     buttonLink: "/category/perfumes",
@@ -43,8 +40,7 @@ export const heroBanners: Banner[] = [
     id: "4",
     title: "Hair Care Essentials",
     subtitle: "Professional Grade",
-    description:
-      "Transform your hair with salon-quality products for every hair type",
+    description: "Transform your hair with salon-quality products for every hair type",
     image: banner4,
     buttonText: "Discover More",
     buttonLink: "/category/haircare",
@@ -559,30 +555,63 @@ export const navigationItems: NavigationItem[] = [
   },
 ];
 
-// Sample Reviews
-export const sampleReviews: Review[] = [
+// Sample filter data - replace with actual data from API
+export const defaultFilterSections: FilterSectionData[] = [
   {
-    id: "1",
-    productId: "1",
-    userName: "Sarah M.",
-    userAvatar: "/avatars/user-1.jpg",
-    rating: 5,
-    date: "2024-11-25",
-    title: "Love it!",
-    comment:
-      "This lip oil is amazing! Super hydrating and the color is perfect.",
-    helpful: 12,
-    verified: true,
+    id: "category",
+    title: "Category",
+    items: [
+      { id: "skincare", label: "Skincare", count: 45 },
+      { id: "makeup", label: "Makeup", count: 32 },
+      { id: "haircare", label: "Haircare", count: 28 },
+      { id: "bodycare", label: "Body Care", count: 19 },
+      { id: "fragrance", label: "Fragrance", count: 15 },
+    ],
   },
   {
-    id: "2",
-    productId: "1",
-    userName: "Emily R.",
-    userAvatar: "/avatars/user-2.jpg",
-    rating: 4,
-    date: "2024-11-20",
-    comment: "Great product, but wish it lasted longer on the lips.",
-    helpful: 8,
-    verified: true,
+    id: "skintype",
+    title: "Skintype (for skin)",
+    items: [
+      { id: "normal", label: "Normal", count: 38 },
+      { id: "dry", label: "Dry", count: 25 },
+      { id: "oily", label: "Oily", count: 31 },
+      { id: "combination", label: "Combination", count: 22 },
+      { id: "sensitive", label: "Sensitive", count: 18 },
+    ],
+  },
+  {
+    id: "applicableArea",
+    title: "Applicable area",
+    items: [
+      { id: "face", label: "Face", count: 52 },
+      { id: "eyes", label: "Eyes", count: 24 },
+      { id: "lips", label: "Lips", count: 18 },
+      { id: "body", label: "Body", count: 35 },
+      { id: "hands", label: "Hands", count: 12 },
+    ],
+  },
+  {
+    id: "effectiveMaterial",
+    title: "Effective material",
+    items: [
+      { id: "hyaluronic", label: "Hyaluronic Acid", count: 28 },
+      { id: "retinol", label: "Retinol", count: 15 },
+      { id: "vitaminc", label: "Vitamin C", count: 22 },
+      { id: "niacinamide", label: "Niacinamide", count: 19 },
+      { id: "peptides", label: "Peptides", count: 11 },
+      { id: "ceramides", label: "Ceramides", count: 14 },
+    ],
+  },
+  {
+    id: "concerns",
+    title: "Concerns",
+    items: [
+      { id: "aging", label: "Anti-Aging", count: 34 },
+      { id: "acne", label: "Acne", count: 21 },
+      { id: "hydration", label: "Hydration", count: 42 },
+      { id: "brightening", label: "Brightening", count: 27 },
+      { id: "pores", label: "Pores", count: 16 },
+      { id: "darkspots", label: "Dark Spots", count: 13 },
+    ],
   },
 ];

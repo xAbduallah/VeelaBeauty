@@ -9,15 +9,21 @@ import { CircleDollarSign, Handbag, Heart } from "lucide-react";
 import Button from "../ui/Button";
 import NavBar from "./NavBar";
 import LanguageSwitcher from "../ui/LanguageSwitcher";
-import { useTranslation } from "@/lib/i18n";
+import { Locale, useLanguage, useTranslation } from "@/lib/i18n";
 
 const Header: React.FC = () => {
+  const { currentLanguage, changeLanguage } = useLanguage();
+  const currentLang = currentLanguage.split("-")[0] as Locale;
+
+  const switchLanguage = (locale: Locale) => {
+    changeLanguage(locale);
+  };
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { t } = useTranslation("common");
 
   return (
     <header className="sticky top-0 z-50 bg-white">
-      <div className="main-section flex flex-col gap-6">
+      <div className="main-section flex flex-col">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/">
@@ -42,9 +48,12 @@ const Header: React.FC = () => {
             <Button variant="primary" className="hidden md:block">
               {t("header.login")}
             </Button>
-            <div className="hidden md:block">
-              <LanguageSwitcher />
-            </div>
+            <button
+              onClick={() => switchLanguage(currentLang === "en" ? "ar" : "en")}
+              className="hidden md:block px-3 py-2 text-sm text-gray-700 hover:text-primary-500 transition-colors border border-gray-300 rounded-md hover:border-primary-300"
+            >
+              <span className="uppercase">{currentLang}</span>
+            </button>
           </div>
         </div>
 

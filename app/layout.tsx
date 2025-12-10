@@ -1,12 +1,12 @@
 import "./globals.css";
-import localFont from "next/font/local";
 import type { Metadata } from "next";
+import localFont from "next/font/local";
+import { I18nProvider } from "@/lib/i18n";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { I18nProvider } from "@/lib/i18n";
 
 const myFont = localFont({
-  src: "../public/fonts/MyriadPro.otf",
+  src: "../public/fonts/MyriadPro-Light.otf",
   variable: "--font-main",
   display: "swap",
 });
@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={myFont.variable} suppressHydrationWarning>
+    <html className={myFont.variable} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">
         <I18nProvider>
           <Header />

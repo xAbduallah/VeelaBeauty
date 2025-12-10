@@ -4,6 +4,7 @@ import { useTranslation as useTranslationBase } from "react-i18next";
 import { Namespace } from "./config";
 import { NavigationItem } from "@/lib/types";
 import { TFunction } from "i18next";
+import { useEffect } from "react";
 
 export function useTranslation(namespace: Namespace = "common") {
   return useTranslationBase(namespace);
@@ -12,12 +13,15 @@ export function useTranslation(namespace: Namespace = "common") {
 export function useLanguage() {
   const { i18n } = useTranslationBase();
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      document.documentElement.dir = i18n.language === "ar" ? "rtl" : "ltr";
+      document.documentElement.lang = i18n.language;
+    }
+  }, [i18n.language, typeof window !== "undefined"]);
+
   const changeLanguage = (language: string) => {
     i18n.changeLanguage(language);
-    if (typeof window !== "undefined") {
-      document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
-      document.documentElement.lang = language;
-    }
   };
 
   return {
