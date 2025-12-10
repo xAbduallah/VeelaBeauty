@@ -12,7 +12,7 @@ import { Facebook, Instagram, Twitter } from "lucide-react";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#FDF5EB] w-full">
+    <footer className="bg-[#FDF5EB] w-full mt-6">
       <div className="main-section px-4 md:px-8 lg:px-0 pb-0">
         {/* Logo */}
         <div className="mb-12 lg:mb-[50px]">
@@ -23,104 +23,74 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 md:gap-12 lg:gap-[44px]">
           {/* Veela Beauty */}
           <div className="w-full">
-            <h3 className="text-[18px] font-semibold leading-[18px] tracking-[0.05555em] uppercase text-[#94A3B8] mb-5">Veela Beauty</h3>
-            <ul className="flex flex-col gap-3">
-              <li>
-                <Link href="/brands" className="text-[16px] leading-[24px] text-[#090914] hover:text-[#333333] transition-colors">
-                  Brand
-                </Link>
-              </li>
-              <li>
-                <Link href="/category/makeup" className="text-[16px] leading-[24px] text-[#090914] hover:text-[#333333] transition-colors">
-                  Makeup
-                </Link>
-              </li>
-              <li>
-                <Link href="/category/skincare" className="text-[16px] leading-[24px] text-[#090914] hover:text-[#333333] transition-colors">
-                  Skincare
-                </Link>
-              </li>
-              <li>
-                <Link href="/category/haircare" className="text-[16px] leading-[24px] text-[#090914] hover:text-[#333333] transition-colors">
-                  Haircare
-                </Link>
-              </li>
-              <li>
-                <Link href="/category/bath-body" className="text-[16px] leading-[24px] text-[#090914] hover:text-[#333333] transition-colors">
-                  Bath & Body
-                </Link>
-              </li>
-              <li>
-                <Link href="/category/perfumes" className="text-[16px] leading-[24px] text-[#090914] hover:text-[#333333] transition-colors">
-                  Perfumes
-                </Link>
-              </li>
-              <li>
-                <Link href="/category/offers" className="text-[16px] leading-[24px] text-[#090914] hover:text-[#333333] transition-colors">
-                  Sale & Offers
-                </Link>
-              </li>
-            </ul>
+            <h3 className="text-heading">Veela Beauty</h3>
+            <div className="flex flex-col">
+              <Link href="/brands" className="nav-text">
+                Brand
+              </Link>
+              <Link href="/category/makeup" className="nav-text">
+                Makeup
+              </Link>
+              <Link href="/category/skincare" className="nav-text">
+                Skincare
+              </Link>
+              <Link href="/category/haircare" className="nav-text">
+                Haircare
+              </Link>
+              <Link href="/category/bath-body" className="nav-text">
+                Bath & Body
+              </Link>
+              <Link href="/category/perfumes" className="nav-text">
+                Perfumes
+              </Link>
+              <Link href="/category/offers" className="nav-text">
+                Sale & Offers
+              </Link>
+            </div>
           </div>
 
           {/* Contact Us */}
           <div className="w-full">
-            <h3 className="text-[18px] font-semibold leading-[25.52px] tracking-[0.05555em] uppercase text-[#94A3B8] mb-5">Contact US</h3>
-            <ul className="flex flex-col gap-3">
-              <li>
-                <Link href="/support" className="text-[16px] leading-[24px] font-medium text-[#090914] hover:text-[#333333] transition-colors">
-                  Customer Support
-                </Link>
-              </li>
-              <li>
-                <Link href="/delivery" className="text-[16px] leading-[24px] font-medium text-[#090914] hover:text-[#333333] transition-colors">
-                  Delivery Details
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms" className="text-[16px] leading-[24px] font-medium text-[#090914] hover:text-[#333333] transition-colors">
-                  Terms & Conditions
-                </Link>
-              </li>
-              <li>
-                <Link href="/privacy" className="text-[16px] leading-[24px] font-medium text-[#090914] hover:text-[#333333] transition-colors">
-                  Privacy Policy
-                </Link>
-              </li>
-            </ul>
+            <h3 className="text-heading">Contact US</h3>
+            <div className="flex flex-col">
+              <Link href="/support" className="nav-text">
+                Customer Support
+              </Link>
+              <Link href="/delivery" className="nav-text">
+                Delivery Details
+              </Link>
+              <Link href="/terms" className="nav-text">
+                Terms & Conditions
+              </Link>
+              <Link href="/privacy" className="nav-text">
+                Privacy Policy
+              </Link>
+            </div>
           </div>
 
           {/* Payment */}
           <div className="w-full">
-            <h3 className="text-[18px] font-semibold leading-[25.62px] tracking-[0.05555em] uppercase text-[#94A3B8] mb-5">Payment</h3>
-            <ul className="flex flex-col gap-3">
-              <li>
-                <Link href="/payment" className="text-[16px] leading-[24px] font-medium text-[#090914] hover:text-[#333333] transition-colors">
-                  Customer Support
-                </Link>
-              </li>
-              <li>
-                <Link href="/delivery" className="text-[16px] leading-[24px] font-medium text-[#090914] hover:text-[#333333] transition-colors">
-                  Delivery Details
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms" className="text-[16px] leading-[24px] font-medium text-[#090914] hover:text-[#333333] transition-colors">
-                  Terms & Conditions
-                </Link>
-              </li>
-              <li>
-                <Link href="/privacy" className="text-[16px] leading-[24px] font-medium text-[#090914] hover:text-[#333333] transition-colors">
-                  Privacy Policy
-                </Link>
-              </li>
-            </ul>
+            <h3 className="text-heading">Payment</h3>
+            <div className="flex flex-col">
+              <Link href="/payment" className="nav-text">
+                Customer Support
+              </Link>
+              <Link href="/delivery" className="nav-text">
+                Delivery Details
+              </Link>
+              <Link href="/terms" className="nav-text">
+                Terms & Conditions
+              </Link>
+              <Link href="/privacy" className="nav-text">
+                Privacy Policy
+              </Link>
+            </div>
           </div>
 
           {/* Install App */}
           <div className="w-full">
-            <h3 className="text-[18px] font-semibold leading-[18px] tracking-[0.05555em] uppercase text-[#94A3B8] mb-5">Install App</h3>
-            <div className="w-fit flex flex-col gap-[19px]">
+            <h3 className="text-heading">Install App</h3>
+            <div className="w-fit flex flex-col gap-[10px]">
               <Link href="#" className="block">
                 <Image src={qrCode} alt="QR Code" width={100} height={31.63} />
               </Link>
@@ -135,7 +105,7 @@ const Footer: React.FC = () => {
 
           {/* Newsletter - First on mobile/tablet, Last on desktop */}
           <div className="w-full max-sm:mb-5">
-            <h3 className="text-[18px] font-semibold leading-[18px] tracking-[0.05555em] uppercase text-[#94A3B8] mb-5">Newsletter</h3>
+            <h3 className="text-heading">Newsletter</h3>
             <div className="flex flex-col gap-3">
               <div className="relative">
                 <input

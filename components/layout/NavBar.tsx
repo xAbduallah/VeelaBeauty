@@ -5,13 +5,11 @@ import { navigationItems } from "@/lib/constants";
 import logo from "@/public/images/global/logo.png";
 import useActiveNav from "../hooks/useActiveNav";
 import { useRouter } from "next/navigation";
-import { useIsTouchDevice } from "../hooks/useTouchDevice";
 
 export default function NavBar() {
   const { push } = useRouter();
   const [selectedItems, setItem] = useState<string>("");
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const isTouchDevice = useIsTouchDevice();
   const selectedSection = navigationItems.find((i) => i.label == selectedItems);
   const { isActive } = useActiveNav(navigationItems);
 
@@ -43,7 +41,7 @@ export default function NavBar() {
               <button
                 key={item.href}
                 onClick={() => {
-                  if (!isTouchDevice && item.label === selectedItems) {
+                  if (item.label === selectedItems) {
                     setItem("");
                     push(item.href);
                   } else setItem(item.label);
@@ -82,15 +80,10 @@ export default function NavBar() {
         >
           <div className="main-section w-full grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 pt-6 pb-1 px-5 md:px-6 lg:px-4 bg-white backdrop-blur-3xl shadow-black/5 shadow-lg rounded-[2px]">
             {selectedSection?.sections?.map((section) => (
-              <div key={section.name} className="flex flex-col gap-[2px]">
-                <h3 className="text-black text-[20px] font-bold">{section.name}</h3>
+              <div key={section.name} className="flex flex-col">
+                <h3 className="text-heading">{section.name}</h3>
                 {section.items.map((item) => (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    onClick={() => setItem("")}
-                    className="text-secondary-500 text-[18px] hover:text-primary-500 hover:underline w-fit"
-                  >
+                  <Link key={item.label} href={item.href} onClick={() => setItem("")} className="nav-text">
                     {item.label}
                   </Link>
                 ))}

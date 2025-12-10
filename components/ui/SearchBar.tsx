@@ -24,7 +24,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   };
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-1">
       <Search className="w-5 md:w-8 text-secondary-700" />
       <form onSubmit={handleSubmit} className={`relative w-full ${className}`}>
         <div className="relative">
@@ -33,7 +33,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={placeholder}
-            className="w-full p-2 text-xs md:text-sm border-transparent focus:outline-none focus:border-transparent transition-all"
+            className="w-full py-2 text-xs md:text-sm border-transparent focus:outline-none focus:border-transparent transition-all"
           />
         </div>
       </form>
