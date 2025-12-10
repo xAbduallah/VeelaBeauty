@@ -8,7 +8,6 @@ import Image from "next/image";
 import { CircleDollarSign, Handbag, Heart } from "lucide-react";
 import Button from "../ui/Button";
 import NavBar from "./NavBar";
-import LanguageSwitcher from "../ui/LanguageSwitcher";
 import { Locale, useLanguage, useTranslation } from "@/lib/i18n";
 
 const Header: React.FC = () => {
