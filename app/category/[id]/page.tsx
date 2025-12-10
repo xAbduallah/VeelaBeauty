@@ -275,7 +275,7 @@ const CategoriesContent: React.FC = () => {
         </div>
 
         {/* Main Content Area */}
-        <div className="hidden md:flex items-start md:gap-[27px] lg:gap-[100px] w-full mt-8">
+        <div className="flex items-start md:gap-[27px] lg:gap-[100px] w-full mt-8">
           <div className="hidden md:block">
             <CategoryFilter
               categoryTitle={categoryTitle}
