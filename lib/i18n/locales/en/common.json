@@ -1,0 +1,24 @@
+{
+  "header": {
+    "search_placeholder": "What are you looking for",
+    "login": "Login",
+    "cart": "Cart",
+    "wishlist": "Wishlist",
+    "currency": "Currency"
+  },
+  "footer": {
+    "veela_beauty": "Veela Beauty",
+    "contact_us": "Contact Us",
+    "customer_support": "Customer Support",
+    "delivery_details": "Delivery Details",
+    "terms_conditions": "Terms & Conditions",
+    "privacy_policy": "Privacy Policy",
+    "payment": "Payment",
+    "install_app": "Install App",
+    "newsletter": "Newsletter",
+    "email_placeholder": "Your email address",
+    "subscribe": "Subscribe Now",
+    "copyright": "Copyright",
+    "all_rights_reserved": "All Rights Reserved"
+  }
+}

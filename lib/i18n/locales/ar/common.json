@@ -1,0 +1,24 @@
+{
+  "header": {
+    "search_placeholder": "ماذا تبحث عن",
+    "login": "تسجيل الدخول",
+    "cart": "عربة التسوق",
+    "wishlist": "المفضلة",
+    "currency": "العملة"
+  },
+  "footer": {
+    "veela_beauty": "فيلا بيوتي",
+    "contact_us": "اتصل بنا",
+    "customer_support": "دعم العملاء",
+    "delivery_details": "تفاصيل التوصيل",
+    "terms_conditions": "الشروط والأحكام",
+    "privacy_policy": "سياسة الخصوصية",
+    "payment": "الدفع",
+    "install_app": "حمل التطبيق",
+    "newsletter": "النشرة الإخبارية",
+    "email_placeholder": "عنوان بريدك الإلكتروني",
+    "subscribe": "اشترك الآن",
+    "copyright": "حقوق النشر",
+    "all_rights_reserved": "جميع الحقوق محفوظة"
+  }
+}

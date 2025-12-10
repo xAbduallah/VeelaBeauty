@@ -8,9 +8,12 @@ import Image from "next/image";
 import { CircleDollarSign, Handbag, Heart } from "lucide-react";
 import Button from "../ui/Button";
 import NavBar from "./NavBar";
+import LanguageSwitcher from "../ui/LanguageSwitcher";
+import { useTranslation } from "@/lib/i18n";
 
 const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t } = useTranslation("common");
 
   return (
     <header className="sticky top-0 z-50 bg-white">
@@ -23,25 +26,25 @@ const Header: React.FC = () => {
 
           {/* Search Bar */}
           <div className="w-[200px] md:w-[300px] lg:w-[500px] p-[2px] md:p-[5px] lg:p-3 rounded-lg border-2 border-secondary-300">
-            <SearchBar placeholder="What are you looking for" />
+            <SearchBar placeholder={t("header.search_placeholder")} />
           </div>
 
           <div className="flex items-center justify-evenly gap-3">
-            <Link href="/">
+            <Link href="/" title={t("header.cart")}>
               <Handbag className="w-[24px] lg:w-[30px]" />
             </Link>
-            <Link href="/" className="hidden md:block">
+            <Link href="/" className="hidden md:block" title={t("header.wishlist")}>
               <Heart className="w-[24px] lg:w-[30px]" />
             </Link>
-            <Link href="/" className="hidden md:block">
+            <Link href="/" className="hidden md:block" title={t("header.currency")}>
               <CircleDollarSign className="w-[24px] lg:w-[30px]" />
             </Link>
             <Button variant="primary" className="hidden md:block">
-              Login
+              {t("header.login")}
             </Button>
-            <Button variant="outline" size="sm" className="hidden md:block">
-              AR
-            </Button>
+            <div className="hidden md:block">
+              <LanguageSwitcher />
+            </div>
           </div>
         </div>
 

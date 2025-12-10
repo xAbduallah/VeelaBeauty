@@ -1,16 +1,22 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect, useRef, Activity } from "react";
+import { useRouter } from "next/navigation";
+import useActiveNav from "../hooks/useActiveNav";
 import { navigationItems } from "@/lib/constants";
 import logo from "@/public/images/global/logo.png";
-import useActiveNav from "../hooks/useActiveNav";
-import { useRouter } from "next/navigation";
+import { useTranslation, translateNavigation } from "@/lib/i18n";
+import { useState, useEffect, useRef, Activity, useMemo } from "react";
 
 export default function NavBar() {
   const { push } = useRouter();
+  const { t } = useTranslation("nav");
   const [selectedItems, setItem] = useState<string>("");
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const selectedSection = navigationItems.find((i) => i.label == selectedItems);
+
+  const translatedItems = useMemo(() => translateNavigation(navigationItems, t), [t]);
+  const selectedSection = translatedItems.find((i) => i.label == selectedItems);
   const { isActive } = useActiveNav(navigationItems);
 
   const activeStyle = (item: any) => {
@@ -37,7 +43,7 @@ export default function NavBar() {
         {/* Scrollable Container */}
         <div className="overflow-x-auto scrollbar-hide scroll-smooth ltr:mr-4 rtl:ml-4" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
           <div className="flex items-center justify-between gap-6 py-3">
-            {navigationItems.map((item) => (
+            {translatedItems.map((item) => (
               <button
                 key={item.href}
                 onClick={() => {
@@ -57,8 +63,8 @@ export default function NavBar() {
       </div>
 
       {/* Flex layout for lg and above */}
-      <div className="hidden lg:flex justify-between gap-10 p-3">
-        {navigationItems.map((item) => (
+      <div className="hidden lg:flex justify-center gap-10 p-3">
+        {translatedItems.map((item) => (
           <Link
             href={item.href}
             key={item.href}
