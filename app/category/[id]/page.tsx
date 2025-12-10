@@ -1,14 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import Image from "next/image";
 import { useParams, useSearchParams } from "next/navigation";
-import {
-  CategoryFilter,
-  ProductsSection,
-  FilterSectionData,
-  PriceRangeValue,
-} from "@/components/category";
+import { CategoryFilter, ProductsSection, FilterSectionData, PriceRangeValue } from "@/components/category";
 import { Product } from "@/lib/types";
 import productImg from "@/public/images/product.svg";
 import { ChevronRight } from "lucide-react";
@@ -205,7 +200,7 @@ const sampleProducts: Product[] = [
   },
 ];
 
-const Categories: React.FC = () => {
+const CategoriesContent: React.FC = () => {
   const search = useSearchParams();
   const { id } = useParams<{ id: string }>();
 
@@ -216,9 +211,7 @@ const Categories: React.FC = () => {
     min: 0,
     max: 1000,
   });
-  const [filterSections, setFilterSections] = useState<FilterSectionData[]>(
-    defaultFilterSections
-  );
+  const [filterSections, setFilterSections] = useState<FilterSectionData[]>(defaultFilterSections);
 
   const categoryTitle = id ? id.replace(/-/g, " ") : "All Products";
 
@@ -226,19 +219,13 @@ const Categories: React.FC = () => {
     setPriceRange(range);
   };
 
-  const handleFilterChange = (
-    sectionId: string,
-    itemId: string,
-    checked: boolean
-  ) => {
+  const handleFilterChange = (sectionId: string, itemId: string, checked: boolean) => {
     setFilterSections((prev) =>
       prev.map((section) => {
         if (section.id === sectionId) {
           return {
             ...section,
-            items: section.items.map((item) =>
-              item.id === itemId ? { ...item, checked } : item
-            ),
+            items: section.items.map((item) => (item.id === itemId ? { ...item, checked } : item)),
           };
         }
         return section;
@@ -296,17 +283,11 @@ const Categories: React.FC = () => {
       <div className="flex flex-col items-center gap-8 w-full">
         {/* Breadcrumb Navigation */}
         <div className="flex items-end gap-2 self-start">
-          <span className="text-[18px] leading-[21.6px] font-normal text-[#4A4A4A]">
-            Home
-          </span>
+          <span className="text-[18px] leading-[21.6px] font-normal text-[#4A4A4A]">Home</span>
           <ChevronRight />
-          <span className="text-[18px] leading-[21.6px] font-normal text-[#4A4A4A]">
-            Makeup
-          </span>
+          <span className="text-[18px] leading-[21.6px] font-normal text-[#4A4A4A]">Makeup</span>
           <ChevronRight />
-          <span className="text-[18px] leading-[21.6px] font-normal text-[#4A4A4A]">
-            Face
-          </span>
+          <span className="text-[18px] leading-[21.6px] font-normal text-[#4A4A4A]">Face</span>
         </div>
 
         {/* Category Description Section */}
@@ -314,15 +295,11 @@ const Categories: React.FC = () => {
           {/* Description Content */}
           <div className="flex flex-col gap-6 w-[518px]">
             <div className="flex flex-col items-center w-full">
-              <h1 className="text-[52px] leading-[62.4px] font-normal text-black w-full">
-                Makeup
-              </h1>
+              <h1 className="text-[52px] leading-[62.4px] font-normal text-black w-full">Makeup</h1>
               <p className="text-[14px] leading-[16.8px] font-normal text-black uppercase w-full h-[68px] line-clamp-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+                id est laborum.
               </p>
             </div>
 
@@ -341,12 +318,7 @@ const Categories: React.FC = () => {
 
           {/* Background Image */}
           <div className="relative w-[612px] h-[300px] rounded-[15px] overflow-hidden">
-            <Image
-              src={productImg}
-              alt="Category background"
-              fill
-              className="object-cover"
-            />
+            <Image src={productImg} alt="Category background" fill className="object-cover" />
           </div>
         </div>
 
@@ -373,6 +345,14 @@ const Categories: React.FC = () => {
         </div>
       </div>
     </section>
+  );
+};
+
+const Categories: React.FC = () => {
+  return (
+    <Suspense fallback={<div className="main-section flex items-center justify-center min-h-[400px]">Loading...</div>}>
+      <CategoriesContent />
+    </Suspense>
   );
 };
 

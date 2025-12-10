@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import Link from "next/link";
 import SearchBar from "@/components/ui/SearchBar";
 import logo from "@/public/images/global/logo.png";
@@ -18,11 +18,7 @@ const Header: React.FC = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/">
-            <Image
-              src={logo}
-              alt="Logo"
-              className="w-[112px] h-[40px] md:w-[144px] md:h-[51px] lg:w-[192px] lg:h-[68px]"
-            />
+            <Image src={logo} alt="Logo" className="w-[112px] h-[40px] md:w-[144px] md:h-[51px] lg:w-[192px] lg:h-[68px]" />
           </Link>
 
           {/* Search Bar */}
@@ -50,7 +46,9 @@ const Header: React.FC = () => {
         </div>
 
         {/* Navigation Bar */}
-        <NavBar />
+        <Suspense fallback={<div className="w-full h-[60px]" />}>
+          <NavBar />
+        </Suspense>
       </div>
     </header>
   );
