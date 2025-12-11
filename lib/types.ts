@@ -131,11 +131,7 @@ export interface SortOption {
 }
 
 export interface ProductsSectionProps {
-  title: string;
   products: Product[];
-  totalCount?: number;
-  sortOptions?: SortOption[];
-  defaultSortId?: string;
   onSortChange?: (sortId: string) => void;
   onAddToCart?: (product: Product) => void;
   onToggleWishlist?: (productId: string) => void;

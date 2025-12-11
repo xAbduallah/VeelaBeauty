@@ -68,7 +68,7 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
   return (
     <aside className="w-full md:w-[160px] shrink-0">
       {/* Filter Header */}
-      <div className="flex items-center justify-between mb-2 border-b border-[#8E8E8E]/50">
+      <div className="flex items-center justify-between mb-2 border-b border-[#8E8E8E]/50 pb-2">
         <h2 className="text-[24px] tracking-[0.05em] font-bold text-black">Filter</h2>
         <button onClick={clearAllFilters} className="nav-text text-[24px] font-bold">
           Clear
