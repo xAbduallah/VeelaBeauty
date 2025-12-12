@@ -66,11 +66,11 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
   };
 
   return (
-    <aside className="w-full md:w-[160px] shrink-0">
+    <aside className="w-full md:w-[180px] shrink-0">
       {/* Filter Header */}
       <div className="flex items-center justify-between mb-2 border-b border-[#8E8E8E]/50 pb-2">
-        <h2 className="text-[24px] tracking-[0.05em] font-bold text-black">Filter</h2>
-        <button onClick={clearAllFilters} className="nav-text text-[24px] font-bold">
+        <h2 className="text-[28px] font-normal text-black">Filter</h2>
+        <button onClick={clearAllFilters} className="nav-text text-[28px] font-normal">
           Clear
         </button>
       </div>
@@ -78,7 +78,7 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
       {/* Price Range Filter */}
       <div className="mb-[8px]">
         <button onClick={() => toggleSection("price")} className="flex items-center justify-between w-full text-left mb-2">
-          <span className="text-[18px] tracking-[0.05em] font-bold text-black">Price</span>
+          <span className="text-[24px] font-normal text-black">Price</span>
           <ChevronDown className={`w-6 h-6 text-black transition-transform ${expandedSections.price ? "rotate-180" : ""}`} />
         </button>
 
@@ -112,7 +112,7 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
           {filterSections.map((section) => (
             <div key={section.id} className="flex flex-col items-start gap-2 w-full border-t border-[#8E8E8E]/50 py-3">
               <button onClick={() => toggleSection(section.id)} className="flex items-center justify-between w-full text-left">
-                <span className="text-[18px] tracking-[0.05em] font-bold text-black">{section.title}</span>
+                <span className="text-[20px] font-normal text-black">{section.title}</span>
                 <ChevronDown className={`w-6 h-6 text-black transition-transform ${expandedSections[section.id] ? "rotate-180" : ""}`} />
               </button>
 
@@ -120,8 +120,14 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
                 <div className="flex flex-col items-center justify-center">
                   {section.items.map((item) => (
                     <label key={item.id} className="flex items-center gap-2 cursor-pointer w-full select-none">
-                      <input type="checkbox" checked={item.checked} onChange={() => handleCheckboxChange(section.id, item.id)} />
-                      <span className="text-[14px] font-extrabold text-black/80">{item.label}</span>
+                      <input
+                        type="checkbox"
+                        checked={item.checked}
+                        onChange={() => handleCheckboxChange(section.id, item.id)}
+                        className="sr-only peer"
+                      />
+                      <div className="w-4 h-4 border-2 border-gray-400 rounded-sm peer-checked:bg-primary-500 peer-checked:border-primary-500 transition-colors" />
+                      <span className="text-[16px] font-normal text-black">{item.label}</span>
                     </label>
                   ))}
                 </div>

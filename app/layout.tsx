@@ -1,15 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import { I18nProvider } from "@/lib/i18n";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-
-const myFont = localFont({
-  src: "../public/fonts/MyriadPro-Light.otf",
-  variable: "--font-main",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "Veela Beauty - Premium Cosmetics & Beauty Products",
@@ -22,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html className={myFont.variable} suppressHydrationWarning>
+    <html suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">
         <I18nProvider>
           <Header />

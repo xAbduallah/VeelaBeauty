@@ -570,7 +570,7 @@ export const defaultFilterSections: FilterSectionData[] = [
   },
   {
     id: "skintype",
-    title: "Skintype (for skin)",
+    title: "Skintype",
     items: [
       { id: "normal", label: "Normal", count: 38 },
       { id: "dry", label: "Dry", count: 25 },

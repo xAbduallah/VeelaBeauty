@@ -179,12 +179,6 @@ const CategoriesContent: React.FC = () => {
   }, [isFilterOpen]);
 
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isFilterOpen) {
-        setIsFilterOpen(false);
-      }
-    };
-
     const handleClickOutside = (e: MouseEvent) => {
       if (mobileFilterRef.current && !mobileFilterRef.current.contains(e.target as Node) && isFilterOpen) {
         setIsFilterOpen(false);
@@ -192,12 +186,10 @@ const CategoriesContent: React.FC = () => {
     };
 
     if (isFilterOpen) {
-      document.addEventListener("keydown", handleEscape);
       document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener("keydown", handleEscape);
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isFilterOpen]);
@@ -281,7 +273,7 @@ const CategoriesContent: React.FC = () => {
   const selectedSortLabel = sortOptions.find((opt) => opt.id === selectedSort)?.label || "Feature";
 
   return (
-    <section className="w-full bg-[radial-gradient(circle_at_top_left,#ec4899_0%,rgba(236,72,153,0.35)_0%,transparent_20%)] shadow-[inset_0_40px_20px_-10px_rgba(0,0,0,0.18)]">
+    <section className="w-full bg-[radial-gradient(circle_at_top_left,#ec4899_0%,rgba(236,72,153,0.15)_0%,transparent_40%)] shadow-[inset_0_30px_40px_-10px_rgba(0,0,0,0.04)]">
       <div className="main-section relative flex flex-col items-center gap-6">
         {/* Breadcrumb Navigation */}
         <div className="flex items-end gap-1 self-start">
@@ -298,7 +290,7 @@ const CategoriesContent: React.FC = () => {
         {/* Category Description Section */}
         <div className="flex flex-col md:flex-row gap-6 items-center justify-between w-full">
           {/* Description Content */}
-          <div className="flex flex-col gap-6 md:w-[328px] lg:w-[518px]">
+          <div className="flex flex-col gap-6 md:w-[50%] lg:w-[40%]">
             <div className="flex flex-col items-center w-full">
               <h1 className="text-[52px] font-normal text-black w-full">Makeup</h1>
               <p className="text-[14px] font-normal text-black uppercase w-full h-[68px] line-clamp-3">
@@ -405,7 +397,7 @@ const CategoriesContent: React.FC = () => {
           </div>
 
           {/* Mobile Filter Modal */}
-          {showFilterModal && (
+          <Activity mode={showFilterModal ? "visible" : "hidden"}>
             <div className="fixed inset-0 z-50 md:hidden">
               <div
                 className={`absolute inset-0 bg-black/50 transition-opacity duration-500 ${animateFilter ? "opacity-100" : "opacity-0"}`}
@@ -413,14 +405,14 @@ const CategoriesContent: React.FC = () => {
               />
               <div
                 ref={mobileFilterRef}
-                className={`absolute mx-2 bottom-0 left-0 right-0 bg-white rounded-t-[20px] shadow-2xl transition-transform duration-500 ease-out ${
+                className={`absolute bottom-0 left-0 right-0 bg-white rounded-t-[20px] shadow-2xl transition-transform duration-500 ease-out ${
                   animateFilter ? "translate-y-0" : "translate-y-full"
                 }`}
-                style={{ height: "70vh", maxHeight: "70vh" }}
+                style={{ height: "85vh", maxHeight: "85vh" }}
               >
                 <div className="flex flex-col h-full">
                   <div className="flex items-center justify-center py-3 cursor-pointer" onClick={() => setIsFilterOpen(false)}>
-                    <div className="w-12 h-1 bg-gray-300 rounded-full" />
+                    <div className="w-32 h-1 bg-gray-300 rounded-full" />
                   </div>
                   <div className="flex-1 overflow-y-auto px-6 pb-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                     <CategoryFilter
@@ -436,8 +428,7 @@ const CategoriesContent: React.FC = () => {
                 </div>
               </div>
             </div>
-          )}
-
+          </Activity>
           <ProductsSection products={sortedProducts} onAddToCart={handleAddToCart} onToggleWishlist={handleToggleWishlist} />
         </div>
       </div>

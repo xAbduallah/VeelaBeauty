@@ -20,7 +20,7 @@ export default function NavBar() {
   const { isActive } = useActiveNav(navigationItems);
 
   const activeStyle = (item: any) => {
-    return isActive(item.href) ? "text-primary-500" : "text-gray-700 hover:text-primary-700 active:text-primary-700";
+    return isActive(item.href) ? "text-primary-500" : "text-black hover:text-primary-700 active:text-primary-700";
   };
 
   useEffect(() => {
@@ -53,7 +53,7 @@ export default function NavBar() {
                   push(item.href);
                 } else setItem(item.label);
               }}
-              className={`text-lg sm:text-xl font-bold ${activeStyle(item)} transition-colors whitespace-nowrap relative group`}
+              className={`text-lg sm:text-xl font-normal ${activeStyle(item)} transition-colors whitespace-nowrap relative group`}
             >
               {item.label}
               <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300" />
@@ -73,7 +73,7 @@ export default function NavBar() {
             key={item.href}
             onClick={() => setItem("")}
             onMouseEnter={() => setItem(item.label)}
-            className={`text-2xl font font-bold ${activeStyle(item)} transition-colors whitespace-nowrap relative group`}
+            className={`text-2xl font-normal ${activeStyle(item)} transition-colors whitespace-nowrap relative group`}
           >
             {item.label}
             <span className="absolute -bottom-3 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300" />
@@ -84,8 +84,7 @@ export default function NavBar() {
       <Activity mode={selectedSection && selectedSection.sections ? "visible" : "hidden"}>
         <div
           onMouseLeave={() => setItem("")}
-          className="absolute top-[50px] lg:top-[56px] left-1/2 -translate-x-1/2 h-auto flex items-start z-50 border-t-3 border-[#FBDBB3]"
-          style={{ width: "100vw" }}
+          className="fixed bg-white left-0 right-0 h-auto flex items-start z-50 border-t-3 border-[#FBDBB3] w-screen"
         >
           <div className="main-section w-full grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 pt-6 pb-1 px-5 md:px-6 lg:px-4 bg-white backdrop-blur-3xl shadow-black/5 shadow-lg rounded-[2px]">
             {selectedSection?.sections?.map((section) => (
